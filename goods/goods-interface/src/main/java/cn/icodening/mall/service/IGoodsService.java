@@ -8,5 +8,4 @@ import cn.icodening.mall.model.Goods;
  */
 public interface IGoodsService extends IMallService<Goods>{
 
-    String onConnect();
 }

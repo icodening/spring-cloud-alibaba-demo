@@ -1,12 +1,6 @@
 package cn.icodening.mall.config;
 
-import org.apache.catalina.startup.Tomcat;
 import org.apache.dubbo.config.ProtocolConfig;
-import org.apache.dubbo.remoting.http.servlet.BootstrapListener;
-import org.apache.dubbo.rpc.protocol.rest.RestProtocol;
-import org.springframework.boot.autoconfigure.web.embedded.EmbeddedWebServerFactoryCustomizerAutoConfiguration;
-import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
-import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,15 +11,25 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class DubboConfig {
 
-//    @Bean
-//    public ProtocolConfig rest() {
-//        ProtocolConfig rest = new ProtocolConfig();
-//        rest.setName("rest");
-//        rest.setPort(80);
-//        rest.setServer("servlet");
-//        return rest;
-//    }
+    /**
+     * 往容器添加一个dubbo协议bean, bean名必须是Dubbo所支持的协议
+     * 当需要将服务暴露为多种协议时，需要在pom中添加对应的依赖。
+     * 并且Spring容器中必须存在一个对应协议的bean
+     *
+     * @return dubbo protocol
+     */
+    @Bean
+    public ProtocolConfig dubbo() {
+        return new ProtocolConfig("dubbo");
+    }
 
+    /**
+     * 当使用Dubbo的rest或http协议时，且server配置为Servlet时,
+     * 需要往Servlet容器添加 {@link org.apache.dubbo.remoting.http.servlet.BootstrapListener}
+     * SpringBoot内置容器需要使用WebServerFactoryCustomizer对WebServer工厂定制化
+     *
+     * @return WebServerFactoryCustomizer
+     */
 //    @Bean
 //    public WebServerFactoryCustomizer<TomcatServletWebServerFactory> tomcatServletWebServerFactoryWebServerFactoryCustomizer() {
 //        return new WebServerFactoryCustomizer<TomcatServletWebServerFactory>() {
