@@ -1,5 +1,6 @@
 package cn.icodening.mall.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -13,8 +14,12 @@ import java.util.Map;
 @RequestMapping("/redis")
 public class RedisController {
 
-    @Resource
     private Map<String, String> redisMap;
+
+    @Autowired(required = false)
+    public void setRedisMap(Map<String, String> redisMap) {
+        this.redisMap = redisMap;
+    }
 
     @GetMapping("/{key}")
     public Object get(@PathVariable String key) {

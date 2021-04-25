@@ -1,0 +1,28 @@
+edsp:
+  cloud:
+    client:
+#      domain-url: ${EDSP_URL:http://127.0.0.1:10010}
+      domain-url: ${EDSP_URL:http://10.22.82.100:10010}
+    enabled: ${EDSP_ENABLED:true}
+    instance:
+      code: ${EDSP_INSTANCE_CODE:cloud-alibaba-goods}
+      token: ${EDSP_TOKEN:171a2390-2305-45e1-b0d0-9d0407381cfc}
+spring:
+  application:
+    name: ${SPRNIG.APPLICATION.NAME:cloud-alibaba-goods}
+  cloud:
+    service-registry:
+      auto-registration:
+        enabled: true
+    sentinel:
+      transport:
+        port: ${random.int(10100,10199)}
+    nacos:
+      config:
+        enabled: ${NACOS_CONFIG_ENABLED:false}
+        server-addr: ${NACOS_SERVER_ADDR:127.0.0.1:8848}
+      discovery:
+        register-enabled: ${NACOS_REGISTER_ENABLED:true}
+#        server-addr: ${NACOS_SERVER_ADDR:127.0.0.1:8848}
+        server-addr: ${NACOS_SERVER_ADDR:10.22.82.101:8848}
+#        enabled: ${NACOS_DISCOVERY_ENABLED:true}

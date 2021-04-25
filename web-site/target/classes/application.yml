@@ -5,9 +5,21 @@ spring:
       discovery:
         server-addr: 127.0.0.1:8848
   application:
-    name: webapp
+    name: cloud-alibaba-website
 dubbo:
-  registry:
-    address: spring-cloud://localhost
   cloud:
-    subscribed-services: mall-goods
+    subscribed-services: cloud-alibaba-goods
+server:
+  port: 12580
+logging:
+  config: ${loggingConfig:classpath:log4j2.xml}
+#rocketmq:
+#  name-server: 123.123.123.123:9876
+#  producer:
+#    group: ${ROCKETMQ_PRODUCER_GROUP:web-group}        # 分组
+#    send-message-timeout: 300000                           # 超时时间
+#    compress-message-body-threshold: 4096                  # 压缩后的最大数据量
+#    max-message-size: 4194304                              # 最大数据量
+#    retry-times-when-send-async-failed: 0                  # 异步失败重试次数
+#    retry-next-server: true
+#    retry-times-when-send-failed: 2                        # 同步失败重试次数

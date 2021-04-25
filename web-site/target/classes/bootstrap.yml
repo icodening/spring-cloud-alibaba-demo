@@ -1,8 +1,27 @@
+#spring:
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 127.0.0.1:8848
 spring:
+  application:
+    name: ${SPRNIG.APPLICATION.NAME:cloud-alibaba-website}
   cloud:
+    service-registry:
+      auto-registration:
+        enabled: true
+    sentinel:
+      transport:
+        port: ${random.int(10100,10199)}
     nacos:
+      config:
+        enabled: ${NACOS_CONFIG_ENABLED:false}
+        server-addr: ${NACOS_SERVER_ADDR:127.0.0.1:8848}
       discovery:
-        server-addr: 127.0.0.1:8848
+        register-enabled: ${NACOS_REGISTER_ENABLED:false}
+        server-addr: ${NACOS_SERVER_ADDR:127.0.0.1:8848}
+        enabled: ${NACOS_DISCOVERY_ENABLED:true}
 dubbo:
-  registry:
-    address: spring-cloud://127.0.0.1:8848
+  protocols:
+    redis:
+      enable: false

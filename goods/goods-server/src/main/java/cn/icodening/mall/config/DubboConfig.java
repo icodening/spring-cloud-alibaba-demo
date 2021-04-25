@@ -20,7 +20,9 @@ public class DubboConfig {
      */
     @Bean
     public ProtocolConfig dubbo() {
-        return new ProtocolConfig("dubbo");
+        ProtocolConfig dubbo = new ProtocolConfig("dubbo");
+        dubbo.setPort(-1);
+        return dubbo;
     }
 
     /**

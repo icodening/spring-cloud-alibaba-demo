@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: ${SPRNIG.APPLICATION.NAME:cloud-alibaba-goods}
+  cloud:
+    service-registry:
+      auto-registration:
+        enabled: true
+    sentinel:
+      transport:
+        port: ${random.int(10100,10199)}
+    nacos:
+      config:
+        enabled: ${NACOS_CONFIG_ENABLED:false}
+        server-addr: ${NACOS_SERVER_ADDR:127.0.0.1:8848}
+      discovery:
+        register-enabled: ${NACOS_REGISTER_ENABLED:true}
+        server-addr: ${NACOS_SERVER_ADDR:127.0.0.1:8848}
+        enabled: ${NACOS_DISCOVERY_ENABLED:true}

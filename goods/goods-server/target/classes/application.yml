@@ -1,7 +1,7 @@
 spring:
-  cloud:
-    nacos:
-      server-addr: 127.0.0.1:8848
+#  cloud:
+#    nacos:
+#      server-addr: 10.22.82.101:8848
   datasource:
     url: jdbc:mysql:///cloud-mall?characterEncoding=utf8&serverTimezone=Asia/Shanghai
     username: root
@@ -14,12 +14,9 @@ spring:
     database: mysql
     generate-ddl: true
   application:
-    name: mall-goods
+    name: cloud-alibaba-goods
 dubbo:
-  protocol:
-    name: dubbo
-    port: -1
-  registry:
-    address: spring-cloud://localhost
   scan:
     base-packages: cn.icodening.mall.service
+logging:
+  config: ${loggingConfig:classpath:log4j2.xml}
